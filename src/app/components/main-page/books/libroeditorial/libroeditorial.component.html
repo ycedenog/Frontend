@@ -1,0 +1,43 @@
+<form [formGroup]="libroEditorial">
+  <div class="container d-flex justify-content-center mt-3">
+    <div class="col-4">
+      <h4>Ingrese la Editorial</h4>
+      <input type="text"  class="form-control" formControlName="editorial"/>
+      <div class="col-3 mt-3">
+        <button mat-flat-button color="accent" (click)="obtenerLibroporEditorial()">Obtener Libros por Editorial</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Titulo</th>
+        <th scope="col">ISBN</th>
+        <th scope="col">Género</th>
+        <th scope="col">Año de publicación</th>
+        <th scope="col">Autor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let libro of arrayLibroEditorial | paginate: {itemsPerPage: 5, currentPage: page }">
+        <th scope="row">{{libro.id}}</th>
+            <td scope="row">{{libro.titulo}}</td>
+            <td>{{libro.ISBN}}</td>
+            <td>{{libro.genero}}</td>
+            <td>{{libro.anio_publicacion}}</td>
+            <td>{{libro.autor}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <pagination-controls (pageChange) = "page = $event"
+  previousLabel = "Anterior"
+  nextLabel="Siguiente"></pagination-controls>
+</div>
+
+
+

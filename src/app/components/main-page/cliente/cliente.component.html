@@ -1,0 +1,29 @@
+<div class="container mt-4">
+  <button mat-flat-button color="accent" (click)="obtenerClientes()">Obtener Clientes</button>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Inico de préstamo</th>
+        <th scope="col">Fin de préstamo</th>
+        <th scope="col">Libro préstado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cliente of arrayClientes | paginate: {itemsPerPage: 20, currentPage: page }">
+        <th scope="row">{{cliente.id}}</th>
+        <td scope="row">{{cliente.cliente.firstName}}</td>
+        <td>{{cliente.cliente.lastName}}</td>
+        <td>{{cliente.fechafinPrestamo}}</td>
+        <td>{{cliente.fechainicioPrestamo}}</td>
+        <td>{{cliente.libro_prestado}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <pagination-controls (pageChange) = "page = $event"
+  previousLabel = "Anterior"
+  nextLabel="Siguiente"></pagination-controls>
+</div>

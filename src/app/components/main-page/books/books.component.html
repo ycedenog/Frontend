@@ -1,0 +1,39 @@
+<div class="container mt-4">
+    <h1>Libros</h1>
+
+  <div class="row justify-content-start">
+    <div class="col-4">
+      Traer todos los libros:
+      <button mat-flat-button color="accent" (click)="obtenerTodosLibros()">Obtener Libros</button>
+    </div>
+    <br>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Titulo</th>
+          <th scope="col">ISBN</th>
+          <th scope="col">Género</th>
+          <th scope="col">Año de publicación</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Autor</th>
+          <th scope="col">Editorial</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let libro of arrayLibros | paginate: {itemsPerPage: 5, currentPage: page }">
+          <th scope="row">{{libro.id}}</th>
+          <td scope="row">{{libro.titulo}}</td>
+          <td>{{libro.ISBN}}</td>
+          <td>{{libro.genero}}</td>
+          <td>{{libro.anio_publicacion}}</td>
+          <td>{{libro.precio}}</td>
+          <td>{{libro.autor}}</td>
+          <td>{{libro.editorial}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange) = "page = $event"
+  previousLabel = "Anterior"
+  nextLabel="Siguiente"></pagination-controls>
+</div>
